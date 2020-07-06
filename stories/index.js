@@ -6,7 +6,7 @@ import { action } from "@storybook/addon-actions";
 import "index.scss";
 
 import Button from "components/Button";
-import DayListItems from "components/DayListItems";
+import DayListItem from "components/DayListItems";
 
 storiesOf("Button", module)
   .addParameters({
@@ -24,7 +24,7 @@ storiesOf("Button", module)
     </Button>
   ));
 
-  
+
   storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
