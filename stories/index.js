@@ -14,7 +14,7 @@ import Appointment from "components/Appointment/index"
 import Header from "components/Appointment/Header"
 import Empty from "components/Appointment/Empty"
 import Show from "components/Appointment/Show"
-
+import Confirm from "components/Appointment/Confirm"
 
 
 storiesOf("Button", module)
@@ -148,3 +148,5 @@ storiesOf("Button", module)
         .add("Header", () =>  <Header time ="12pm"></Header>)
         .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
         .add("Show", () => <Show student ="Lydia Miller-Jones" interviewer ={ interviewer} onDelete ={action("onDelete")} onEdit ={action("onEdit")}/>)
+        
+        .add("Confirm", () => <Confirm message = "Delete the appointment?" onConfirm ={action("onCofirm")} onCancel ={action("onCancel")}/>)
