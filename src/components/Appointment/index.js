@@ -3,7 +3,7 @@ import Header from "./Header"
 import Show from "./Show"
 import Empty from "./Empty"
 import "./style.scss" 
-import { action } from "@storybook/addon-actions";
+
 
 
 export default function Appointmnet(props) {
