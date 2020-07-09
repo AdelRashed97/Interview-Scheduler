@@ -10,11 +10,13 @@ export default function useVisualMode(initial) {
   };
   
   const back = () => {
-    //setHistory([...history].pop(),()=> setMode(history.slice(-1)[0]))
-    setHistory(history.slice(0,history.length -1))
+    if (history.length >= 2) {
+
+      setHistory(history.slice(0,history.length -1))
+    }
      
   }
-  
+
   useEffect(()=>{
     setMode(history.slice(-1)[0])
 
