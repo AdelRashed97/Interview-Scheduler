@@ -24,3 +24,15 @@
   }
 
 }
+
+export function getInterview(state,interview) {
+  if (interview !== null) {
+    const interviewerID = interview.interviewer;
+    const interviewer = state.interviewers[interviewerID];
+
+    return {student:interview.student, interviewer};
+
+  } else {
+    return null
+  }
+}
