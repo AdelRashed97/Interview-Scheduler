@@ -4,12 +4,13 @@ import "./style.scss"
 import useVisualMode from "../../hooks/useVisualMode"
 import Show from "./Show"
 import Empty from "./Empty"
-import FORM from "./Form"
+import Form from "./Form"
+import Status from "./Status"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
-const CREATE ="CREATE"
-
+const CREATE ="CREATE";
+const SAVING = "SAVING";
 
 
 export default function Appointmnet(props) {
@@ -21,9 +22,9 @@ export default function Appointmnet(props) {
   const save = function (name,interviewer) {
     const interview = { 
       student: name,
-      interviewer 
+      interviewer  
     }
-
+    transition(SAVING);
     bookInterview(id,interview)
     .then(() => transition(SHOW))
 
@@ -39,7 +40,9 @@ export default function Appointmnet(props) {
 
     {mode === SHOW && <Show student ={interview.student} interviewer ={ interview.interviewer} onDelete ={() => console.log("delete")} onEdit ={() => console.log("edit")}/>}
 
-    {mode === CREATE && <FORM interviewers ={interviewers} onCancel = {back} onSave={save}/>}
+    {mode === CREATE && <Form interviewers ={interviewers} onCancel = {back} onSave={save}/>}
+
+    {mode === SAVING  && <Status message ="Saving"/>}
 
   </article>)
 }
