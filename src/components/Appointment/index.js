@@ -27,7 +27,7 @@ export default function Appointmnet(props) {
 
     {mode === SHOW && <Show student ={interview.student} interviewer ={ interview.interviewer} onDelete ={() => console.log("delete")} onEdit ={() => console.log("edit")}/>}
 
-    {mode === CREATE && <FORM interviewers ={[]} onCancel = {() => back()}/>}
+    {mode === CREATE && <FORM interviewers ={props.interviewers} onCancel = {() => back()}/>}
 
   </article>)
 }
