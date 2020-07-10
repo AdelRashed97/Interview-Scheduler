@@ -13,10 +13,22 @@ const CREATE ="CREATE"
 
 
 export default function Appointmnet(props) {
-  const {interview,time}=props
+  const {interview,time,interviewers,id,bookInterview}=props
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
+  const save = function (name,interviewer) {
+    const interview = { 
+      student: name,
+      interviewer 
+    }
+
+    bookInterview(id,interview);
+    transition(SHOW);
+
+
+  }
   
  
   return (<article className="appointment">
@@ -27,7 +39,7 @@ export default function Appointmnet(props) {
 
     {mode === SHOW && <Show student ={interview.student} interviewer ={ interview.interviewer} onDelete ={() => console.log("delete")} onEdit ={() => console.log("edit")}/>}
 
-    {mode === CREATE && <FORM interviewers ={props.interviewers} onCancel = {() => back()}/>}
+    {mode === CREATE && <FORM interviewers ={interviewers} onCancel = {back} onSave={save}/>}
 
   </article>)
 }
