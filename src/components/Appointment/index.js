@@ -24,8 +24,8 @@ export default function Appointmnet(props) {
       interviewer 
     }
 
-    bookInterview(id,interview);
-    transition(SHOW);
+    bookInterview(id,interview)
+    .then(() => transition(SHOW))
 
 
   }
