@@ -7,6 +7,7 @@ import Empty from "./Empty"
 import Form from "./Form"
 import Status from "./Status"
 import Confirm from "./Confirm"
+import Error from "./Error"
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -15,6 +16,8 @@ const SAVING = "SAVING";
 const CONFIRM = "CONFIRM";
 const DELETING = "DELETING";
 const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 
 export default function Appointmnet(props) {
@@ -31,14 +34,16 @@ export default function Appointmnet(props) {
     transition(SAVING);
     bookInterview(id,interview)
     .then(() => transition(SHOW))
+    .catch(() => transition(ERROR_SAVE,true))
 
 
   }
 
   const cancel = function (c) {
-    transition(DELETING);
+    transition(DELETING,true);
     cancelInterview(id)
-    .then(() => transition(EMPTY))
+    .then((data) => transition(EMPTY))
+    .catch(()=> transition(ERROR_DELETE,true))
   }
   
   
@@ -60,6 +65,10 @@ export default function Appointmnet(props) {
     {mode === DELETING  && <Status message ="Deleting"/>}
 
     {mode === CONFIRM && <Confirm onCancel={back} onConfirm={cancel} message = "Are you sure you want to delete ?"/>}
+
+    {mode === ERROR_SAVE && <Error message ="Could not save appointment." onClose={back}/>}
+
+    {mode === ERROR_DELETE && <Error message ="Could not delete appointment." onClose={back}/>}
 
   </article>)
 }
