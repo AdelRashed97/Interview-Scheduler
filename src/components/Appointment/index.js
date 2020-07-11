@@ -13,7 +13,8 @@ const SHOW = "SHOW";
 const CREATE ="CREATE";
 const SAVING = "SAVING";
 const CONFIRM = "CONFIRM";
-const DELETING = "DELETING"
+const DELETING = "DELETING";
+const EDIT = "EDIT";
 
 
 export default function Appointmnet(props) {
@@ -48,9 +49,11 @@ export default function Appointmnet(props) {
 
     {mode === EMPTY && <Empty onAdd={()=>transition(CREATE) }/>}
 
-    {mode === SHOW && <Show student ={interview.student} interviewer ={ interview.interviewer} onDelete ={() => transition(CONFIRM)} onEdit ={() => console.log("edit")}/>}
+    {mode === SHOW && <Show student ={interview.student} interviewer ={ interview.interviewer} onDelete ={() => transition(CONFIRM)} onEdit ={() => transition(EDIT)}/>}
 
     {mode === CREATE && <Form interviewers ={interviewers} onCancel = {back} onSave={save}/>}
+    {mode === EDIT && <Form name = {interview.student} interviewer={interview.interviewer.id}interviewers ={interviewers} onCancel = {back} onSave={save}/>}
+    
 
     {mode === SAVING  && <Status message ="Saving"/>}
 
