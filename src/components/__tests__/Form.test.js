@@ -67,7 +67,40 @@ describe("Form", () => {
     
   })
 
+  it("submits the name the user inputs ",() => {
+  const onSave = jest.fn();
+  const { getByText, getByPlaceholderText } = render(
+    <Form interviewers={interviewers} onSave={onSave} interviewer= {1}/>
+  );
 
+  const input = getByPlaceholderText("Enter Student Name");
+
+  fireEvent.change(input, { target: { value: "Lydia Miller-Jones" } });
+
+  fireEvent.click(getByText("Save"));
+
+  expect(onSave).toHaveBeenCalledTimes(1);
+  expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
+    
+  })
+
+  it("it calls onCancel and reset the input field ",() => {
+    const onSave = jest.fn();
+    const onCancel =jest.fn();
+    const { getByText, getByPlaceholderText } = render(
+      <Form interviewers={interviewers} onSave={onSave} interviewer= {1} onCancel ={onCancel}/>
+    );
+  
+    const input = getByPlaceholderText("Enter Student Name");
+  
+    fireEvent.change(input, { target: { value: "Lydia Miller-Jones" } });
+  
+    fireEvent.click(getByText("Cancel"));
+  
+    expect(onCancel).toHaveBeenCalledTimes(1);
+    expect(input).toHaveValue("");
+      
+    })
 
 
 });
