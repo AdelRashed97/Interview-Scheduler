@@ -48,7 +48,7 @@ export default function Appointmnet(props) {
   
   
  
-  return (<article className="appointment">
+  return (<article className="appointment" data-testid="appointment">
     <Header time={time}/>
     
 
