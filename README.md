@@ -19,6 +19,7 @@ A React application that allows users to book and cancel interviews.
 ![Editing an Appointment](./screenshots/editing.gif)
 
 **Deleting an appointment**
+
 ![Deleting an appointment](./screenshots/deleting.gif)
 
 
